@@ -20,15 +20,16 @@ export default function AddTask({ onAddTask }: AddTaskProps) {
   };
 
   return (
-    <form onSubmit={handleAddTask}>
+    <form onSubmit={handleAddTask} className="flex flex-col gap-y-2 mb-2">
       <label htmlFor="task-input">Add Task: </label>
       <input
+        className="text-black outline-none rounded p-1"
         required
         id="task-input"
         value={taskName}
         onChange={(e) => setTaskName(e.target.value)}
       />
-      <button>Add</button>
+      <button className="bg-[#845afc] py-1 text-white rounded">Add</button>
     </form>
   );
 }

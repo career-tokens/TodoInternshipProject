@@ -14,16 +14,17 @@ const TaskListItem: React.FC<TaskProps> = ({
   onDeleteTask,
 }) => {
   return (
-    <li key={id}>
-      <div className="flex">
+    <li key={id} className="mb-2">
+      <div className="flex justify-between">
         <input
           type="text"
-          className="border-none outline-none"
+          className="border-none outline-none bg-[#845afc] text-white w-[80%] p-1 rounded"
           value={children}
           aria-label="edit-todo"
           onChange={(e) => onEditTask(id, e)}
         />
         <button
+          className="bg-red-500 rounded p-1"
           onClick={() => {
             onDeleteTask(id);
           }}

@@ -72,4 +72,22 @@ describe('App', () => {
       expect(screen.queryAllByRole('listitem')).toHaveLength(1);
     });
   });
+
+  test('should change the todo input on user changing the value', async () => {
+    const user = userEvent.setup();
+    render(<App />);
+
+    const input = screen.getByRole('textbox', { name: 'Add Task:' });
+    const button = screen.getByRole('button', { name: 'Add' });
+
+    await user.type(input, 'New Task');
+    await user.click(button);
+
+    const input2 = screen.getByLabelText('edit-todo');
+    // Type "Changed Value" into the tdo item's input field
+    await user.type(input2, '+Change');
+    await waitFor(() => {
+      expect(input2).toHaveValue('New Task+Change');
+    });
+  });
 });

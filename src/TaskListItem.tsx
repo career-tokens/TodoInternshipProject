@@ -13,6 +13,7 @@ const TaskListItem: React.FC<TaskProps> = ({ children, id, onEditTask }) => {
         type="text"
         className="border-none outline-none"
         value={children}
+        aria-label="edit-todo"
         onChange={(e) => onEditTask(id, e)}
       />
     </li>

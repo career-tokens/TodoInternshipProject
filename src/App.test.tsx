@@ -24,8 +24,9 @@ describe('App', () => {
     await user.type(input, 'New Task');
     await user.click(button);
 
+    const input2 = screen.getByLabelText('edit-todo');
     await waitFor(() => {
-      expect(screen.getByText('New Task')).toBeInTheDocument();
+      expect(input2).toHaveValue('New Task');
     });
   });
 

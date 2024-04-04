@@ -30,6 +30,17 @@ function App() {
     setTasks(newTasks);
   };
 
+  const onDeleteTask = (id: number) => {
+    const newTasks = [...tasks];
+    let i;
+    for (i = 0; i < newTasks.length; i++)
+      if (newTasks[i].id == id) {
+        break;
+      }
+    newTasks.splice(i, 1);
+    setTasks(newTasks);
+  };
+
   return (
     <div>
       <h1>Tasks</h1>
@@ -37,7 +48,12 @@ function App() {
       <TaskList>
         <TaskListHeader count={tasks.length} />
         {tasks.map((task) => (
-          <TaskListItem key={task.id} id={task.id} onEditTask={onEditTask}>
+          <TaskListItem
+            key={task.id}
+            id={task.id}
+            onEditTask={onEditTask}
+            onDeleteTask={onDeleteTask}
+          >
             {task.title}
           </TaskListItem>
         ))}

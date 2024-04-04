@@ -90,4 +90,6 @@ describe('App', () => {
       expect(input2).toHaveValue('New Task+Change');
     });
   });
+
+  test.todo('should delete a todo on clicking delete icon', () => {});
 });

@@ -91,5 +91,25 @@ describe('App', () => {
     });
   });
 
-  test.todo('should delete a todo on clicking delete icon', () => {});
+  test('should delete a todo on clicking delete icon', async () => {
+    const user = userEvent.setup();
+    render(<App />);
+
+    const input = screen.getByRole('textbox', { name: 'Add Task:' });
+    const button = screen.getByRole('button', { name: 'Add' });
+
+    await user.type(input, 'New Task');
+    await user.click(button);
+
+    await waitFor(() => {
+      expect(screen.queryAllByRole('listitem')).toHaveLength(1);
+    });
+
+    const button2 = screen.getByRole('button', { name: 'Delete' });
+    await user.click(button2);
+
+    await waitFor(() => {
+      expect(screen.queryAllByRole('listitem')).toHaveLength(0);
+    });
+  });
 });

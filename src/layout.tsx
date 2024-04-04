@@ -1,6 +1,10 @@
 import React from 'react';
 
-const Layout = ({ children }) => {
+interface LayoutProps {
+  children: React.ReactNode;
+}
+
+const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
     <div className="h-screen flex justify-center items-center bg-[#845afc] text-lg">
       {children}

@@ -12,24 +12,29 @@ type Task = {
 function App() {
   const [taskName, setTaskName] = useState('');
 
-  const [tasks, setTasks] = useState<Task[]>([
-    {
-      id: 1,
-      title: 'Learn React',
-      isCompleted: true,
-      priority: 'p1',
-    },
-  ]);
+  const [tasks, setTasks] = useState<Task[]>([]);
+
+  const onInputKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      onAddTask();
+    }
+  };
 
   const onAddTask = () => {
+    const trimmedTaskName = taskName.trim();
+
+    if (!trimmedTaskName) {
+      return;
+    }
     setTasks([
       ...tasks,
       {
         id: new Date().getTime(), // Not a great way to generate IDs
-        title: taskName,
+        title: trimmedTaskName,
         isCompleted: false,
       },
     ]);
+    setTaskName('');
   };
 
   return (
@@ -40,6 +45,7 @@ function App() {
         id="task-input"
         value={taskName}
         onChange={(e) => setTaskName(e.target.value)}
+        onKeyDown={onInputKeyDown}
       />
       <button onClick={onAddTask}>Add</button>
       <ul>

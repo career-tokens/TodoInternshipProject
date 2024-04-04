@@ -5,4 +5,5 @@ export type Task = {
   title: string;
   isCompleted: boolean;
   priority?: Priority;
+  isEdited: boolean;
 };
